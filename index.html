@@ -130,11 +130,12 @@
     
     <!-- לוגו + טקסט -->
     <div class="flex items-center gap-4 flex-shrink-0">
-      <a href="#top" class="logo-link">
-        <img src="images/logo.png"
-             alt="לוגו יהודה ורובינשטיין - שמאי מקרקעין"
-             class="object-contain w-auto h-[70px] sm:h-[100px] md:h-[120px]">
-      </a>
+ <a href="#top" class="logo-link">
+  <img src="images/logo.png"
+       alt="לוגו יהודה ורובינשטיין - שמאי מקרקעין"
+       class="object-contain w-auto h-[60px] sm:h-[100px] md:h-[120px]">
+</a>
+
       <div class="flex flex-col leading-tight">
         <h1 class="text-xl sm:text-2xl font-bold text-gray-800 whitespace-nowrap">
           יהודה & רובינשטיין
@@ -156,8 +157,8 @@
       </a>
     </nav>
 
-    <!-- כפתור תפריט במובייל -->
-    <button id="menuBtn" class="md:hidden text-gray-800 focus:outline-none ml-4">
+    <!-- כפתור תפריט במובייל (מימין) -->
+    <button id="menuBtn" class="md:hidden text-gray-800 focus:outline-none">
       <!-- אייקון המבורגר -->
       <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -168,12 +169,14 @@
 </header>
 
 
-<!-- תפריט צדדי במובייל -->
+<!-- תפריט צדדי במובייל (מימין) -->
 <div id="mobileMenu" class="fixed inset-0 bg-black/50 z-40 hidden">
-<div class="bg-white w-64 h-full shadow-lg p-6 pt-16 flex flex-col space-y-6 overflow-y-auto max-h-screen ml-auto">
+  <div class="bg-white w-64 h-full shadow-lg p-6 pt-20 flex flex-col space-y-6 
+              overflow-y-auto max-h-screen ml-auto relative">
+    
     <!-- כפתור סגירה -->
-<button id="closeMenu" 
-        class="absolute top-4 right-4 text-gray-600 text-2xl">✕</button>
+ <button id="closeMenu" 
+        class="absolute top-4 right-4 text-gray-600 text-2xl z-50">✕</button>
 
     <a href="#about" class="text-gray-800 font-medium hover:text-green-700">אודות</a>
     <a href="#services" class="text-gray-800 font-medium hover:text-green-700">שירותים</a>
@@ -186,6 +189,7 @@
     </a>
   </div>
 </div>
+
 
 
 
@@ -212,7 +216,7 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-20 bg-white/50">
+<section id="about" class="py-20 bg-white/50 scroll-mt-[100px]">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <h2 class="text-4xl font-bold text-gray-800 mb-6">נעים להכיר</h2>
@@ -788,27 +792,36 @@
         }
     });
 
-    // תפריט מובייל מתוקן
-    const menuBtn = document.getElementById('menuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const closeMenu = document.getElementById('closeMenu');
+  // תפריט מובייל מתוקן
+const menuBtn = document.getElementById('menuBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+const closeMenu = document.getElementById('closeMenu');
+const mobileLinks = mobileMenu.querySelectorAll('a');
 
-    // פתיחה
-    menuBtn.addEventListener('click', () => {
-        mobileMenu.classList.remove('hidden');
-    });
+// פתיחה
+menuBtn.addEventListener('click', () => {
+  mobileMenu.classList.remove('hidden');
+});
 
-    // סגירה
-    closeMenu.addEventListener('click', () => {
-        mobileMenu.classList.add('hidden');
-    });
+// סגירה בלחיצה על X
+closeMenu.addEventListener('click', () => {
+  mobileMenu.classList.add('hidden');
+});
 
-    // סגירה בלחיצה על הרקע (האפור)
-    mobileMenu.addEventListener('click', (e) => {
-        if (e.target === mobileMenu) {
-            mobileMenu.classList.add('hidden');
-        }
-    });
+// סגירה בלחיצה על קישור בתפריט
+mobileLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    mobileMenu.classList.add('hidden');
+  });
+});
+
+// סגירה בלחיצה על הרקע (האפור)
+mobileMenu.addEventListener('click', (e) => {
+  if (e.target === mobileMenu) {
+    mobileMenu.classList.add('hidden');
+  }
+});
+
 </script>
 
     <!-- (נשאר במקור) Cloudflare snippet להקשחת בוטים -->
