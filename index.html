@@ -128,45 +128,49 @@
     </div>
 <!-- Header -->
 <header class="bg-white/90 backdrop-blur-sm shadow-lg sticky top-0 z-50 h-[90px] flex items-center">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center w-full">
+<div class="max-w-7xl mx-auto px-0 sm:px-2 lg:px-4 w-full 
+              grid grid-cols-[auto_1fr_auto] items-center">
 
-    <!-- כפתור תפריט במובייל (ימין) -->
-    <button id="menuBtn" class="md:hidden text-gray-800 focus:outline-none order-first">
+    <!-- ימין: לוגו + שם -->
+<div class="flex items-center gap-3 mr-0 md:mr-0">
+    <a href="#top" class="logo-link">
+        <img src="images/logo.png"
+             alt="לוגו יהודה ורובינשטיין - שמאי מקרקעין"
+             class="object-contain w-auto h-[80px] sm:h-[120px] md:h-[130px]">
+    </a>
+    <div class="flex flex-col leading-tight">
+        <h1 class="text-xl sm:text-2xl font-bold text-gray-800 whitespace-nowrap">
+            יהודה & רובינשטיין
+        </h1>
+        <p class="text-sm text-gray-600">משרד שמאות מקרקעין</p>
+    </div>
+</div>
+
+    <!-- אמצע: ניווט -->
+    <nav class="hidden md:flex space-x-8 space-x-reverse justify-center">
+      <a href="#about" class="text-gray-600 font-medium hover:text-green-700">אודות</a>
+      <a href="#services" class="text-gray-600 font-medium hover:text-green-700">שירותים</a>
+      <a href="#testimonials" class="text-gray-600 font-medium hover:text-green-700">המלצות</a>
+      <a href="#faq" class="text-gray-600 font-medium hover:text-green-700">שאלות נפוצות</a>
+    </nav>
+
+    <!-- שמאל: צור קשר -->
+    <div class="hidden md:flex justify-end">
+      <a href="#contact"
+         class="px-6 py-3 text-white font-semibold rounded-full shadow-lg transition-all transform hover:scale-105 hover:shadow-xl"
+         style="background: linear-gradient(135deg, #598447, #6b9555);">
+        צור קשר
+      </a>
+    </div>
+
+    <!-- תפריט מובייל (רק במובייל) -->
+    <button id="menuBtn" class="md:hidden text-gray-800 focus:outline-none justify-self-end">
       <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
               d="M4 6h16M4 12h16M4 18h16"/>
       </svg>
     </button>
 
-  <!-- לוגו + טקסט -->
-<div class="flex-1 flex justify-center md:justify-start md:pl-6">
-      <div class="flex items-center gap--3">
-        <a href="#top" class="logo-link">
-          <img src="images/logo.png"
-               alt="לוגו יהודה ורובינשטיין - שמאי מקרקעין"
-               class="object-contain w-auto h-[80px] sm:h-[120px] md:h-[150px]">
-        </a>
-        <div class="flex flex-col leading-tight">
-          <h1 class="text-xl sm:text-2xl font-bold text-gray-800 whitespace-nowrap">
-            יהודה & רובינשטיין
-          </h1>
-          <p class="text-sm text-gray-600">משרד שמאות מקרקעין</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- ניווט בדסקטופ -->
-    <nav class="hidden md:flex space-x-8 space-x-reverse items-center">
-      <a href="#about" class="text-gray-600 font-medium hover:text-green-700">אודות</a>
-      <a href="#services" class="text-gray-600 font-medium hover:text-green-700">שירותים</a>
-      <a href="#testimonials" class="text-gray-600 font-medium hover:text-green-700">המלצות</a>
-      <a href="#faq" class="text-gray-600 font-medium hover:text-green-700">שאלות נפוצות</a>
-      <a href="#contact"
-         class="px-6 py-3 text-white font-semibold rounded-full shadow-lg transition-all transform hover:scale-105 hover:shadow-xl"
-         style="background: linear-gradient(135deg, #598447, #6b9555);">
-        צור קשר
-      </a>
-    </nav>
   </div>
 </header>
 
