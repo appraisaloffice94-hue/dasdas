@@ -172,10 +172,6 @@
               overflow-y-auto max-h-screen absolute right-0 top-0 transform translate-x-full 
               transition-transform duration-300">
 
-    <!-- כפתור סגירה (✕) -->
-    <button id="closeMenu" class="absolute top-4 right-4 text-gray-800 text-3xl z-[9999]">
-      ✕
-    </button>
 
     <a href="#about" class="text-gray-800 font-medium hover:text-green-700">אודות</a>
     <a href="#services" class="text-gray-800 font-medium hover:text-green-700">שירותים</a>
@@ -603,12 +599,13 @@
                 </div>
             </div>
             <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2022 יהודה & רובינשטיין - משרד שמאות מקרקעין. כל הזכויות שמורות.</p>
+                <p>&copy; 2025 יהודה & רובינשטיין - משרד שמאות מקרקעין. כל הזכויות שמורות.</p>
             </div>
         </div>
     </footer>
 
-<script>
+
+ <script>
     // Smooth scrolling for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -791,39 +788,38 @@
         }
     });
 
- // תפריט מובייל עם אנימציה
-const menuBtn = document.getElementById('menuBtn');
-const mobileMenu = document.getElementById('mobileMenu');
-const menuBox = mobileMenu.querySelector('div');
-const closeMenu = document.getElementById('closeMenu');
-const mobileLinks = mobileMenu.querySelectorAll('a');
+    // תפריט מובייל עם Toggle (ללא X)
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuBox = mobileMenu.querySelector('div');
+    const mobileLinks = mobileMenu.querySelectorAll('a');
 
-// פתיחה
-menuBtn.addEventListener('click', () => {
-  mobileMenu.classList.remove('hidden');
-  setTimeout(() => {
-    menuBox.classList.remove('translate-x-full');
-  }, 10);
-});
+    let menuOpen = false;
 
-// סגירה (פונקציה משותפת)
-function closeMobileMenu() {
-  menuBox.classList.add('translate-x-full');
-  setTimeout(() => {
-    mobileMenu.classList.add('hidden');
-  }, 300);
-}
+    function toggleMobileMenu() {
+      if (!menuOpen) {
+        mobileMenu.classList.remove('hidden');
+        setTimeout(() => menuBox.classList.remove('translate-x-full'), 10);
+        menuOpen = true;
+      } else {
+        menuBox.classList.add('translate-x-full');
+        setTimeout(() => mobileMenu.classList.add('hidden'), 300);
+        menuOpen = false;
+      }
+    }
 
-// סגירה בלחיצה על X
-closeMenu.addEventListener('click', closeMobileMenu);
+    // לחיצה על ☰
+    menuBtn.addEventListener('click', toggleMobileMenu);
 
-// סגירה בלחיצה על קישור
-mobileLinks.forEach(link => link.addEventListener('click', closeMobileMenu));
+    // סגירה אחרי לחיצה על קישור
+    mobileLinks.forEach(link => link.addEventListener('click', toggleMobileMenu));
 
-// סגירה בלחיצה על הרקע
-mobileMenu.addEventListener('click', (e) => {
-  if (e.target === mobileMenu) closeMobileMenu();
-});
+    // סגירה בלחיצה על הרקע
+    mobileMenu.addEventListener('click', (e) => {
+      if (e.target === mobileMenu) toggleMobileMenu();
+    });
+</script>
+
 
 
 </script>
