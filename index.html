@@ -68,10 +68,11 @@
             transition: max-height 0.3s ease;
         }
         
-        .faq-content.open {
-            max-height: 200px;
-        }
-        
+    .faq-content.open {
+    max-height: 200px;   /* נשאר מוגבל */
+    overflow-y: auto;    /* מוסיף גלילה פנימית */
+}
+   
         .floating-elements {
             position: absolute;
             width: 100%;
@@ -142,7 +143,7 @@
         <a href="#top" class="logo-link">
           <img src="images/logo.png"
                alt="לוגו יהודה ורובינשטיין - שמאי מקרקעין"
-               class="object-contain w-auto h-[60px] sm:h-[100px] md:h-[120px]">
+               class="object-contain w-auto h-[80px] sm:h-[120px] md:h-[120px]">
         </a>
         <div class="flex flex-col leading-tight">
           <h1 class="text-xl sm:text-2xl font-bold text-gray-800 whitespace-nowrap">
@@ -713,6 +714,34 @@
         });
     });
 
+// Swipe (מגע) על הביקורות
+const testimonialContainer = document.querySelector('.testimonial-container');
+let startX = 0;
+let endX = 0;
+
+testimonialContainer.addEventListener('touchstart', (e) => {
+  startX = e.touches[0].clientX;
+});
+
+testimonialContainer.addEventListener('touchend', (e) => {
+  endX = e.changedTouches[0].clientX;
+  handleSwipe();
+});
+
+function handleSwipe() {
+  const diffX = endX - startX;
+  if (Math.abs(diffX) > 50) { // סף מינימום כדי שייחשב להחלקה
+    if (diffX > 0) {
+      // החלקה ימינה -> ביקורת קודמת
+      currentTestimonial = (currentTestimonial - 1 + testimonials.length) % testimonials.length;
+    } else {
+      // החלקה שמאלה -> ביקורת הבאה
+      currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+    }
+    updateTestimonial(currentTestimonial);
+  }
+}
+
     // Contact form submission (Formspree + תודה)
     document.getElementById('contactForm').addEventListener('submit', async function(e) {
         e.preventDefault();
@@ -825,7 +854,6 @@
 
 
 
-</script>
 
     <!-- (נשאר במקור) Cloudflare snippet להקשחת בוטים -->
     <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97cd7e60e3a25115',t:'MTc1NzQ5MjI5Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
