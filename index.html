@@ -127,15 +127,22 @@
 <!-- Header -->
 <header class="bg-white/90 backdrop-blur-sm shadow-lg sticky top-0 z-50 h-[90px] flex items-center">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center w-full">
-    
+
+    <!-- כפתור תפריט במובייל (מימין) -->
+    <button id="menuBtn" class="md:hidden text-gray-800 focus:outline-none ml-2">
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+    </button>
+
     <!-- לוגו + טקסט -->
     <div class="flex items-center gap-4 flex-shrink-0">
- <a href="#top" class="logo-link">
-  <img src="images/logo.png"
-       alt="לוגו יהודה ורובינשטיין - שמאי מקרקעין"
-       class="object-contain w-auto h-[60px] sm:h-[100px] md:h-[120px]">
-</a>
-
+      <a href="#top" class="logo-link">
+        <img src="images/logo.png"
+             alt="לוגו יהודה ורובינשטיין - שמאי מקרקעין"
+             class="object-contain w-auto h-[60px] sm:h-[100px] md:h-[120px]">
+      </a>
       <div class="flex flex-col leading-tight">
         <h1 class="text-xl sm:text-2xl font-bold text-gray-800 whitespace-nowrap">
           יהודה & רובינשטיין
@@ -156,6 +163,33 @@
         צור קשר
       </a>
     </nav>
+
+  </div>
+</header>
+
+<!-- תפריט צדדי במובייל (מימין) -->
+<div id="mobileMenu" class="fixed inset-0 bg-black/50 z-40 hidden transition-opacity duration-300">
+  <div class="bg-white w-64 h-full shadow-lg p-6 pt-20 flex flex-col space-y-6 
+              overflow-y-auto max-h-screen absolute right-0 top-0 transform translate-x-full 
+              transition-transform duration-300">
+
+    <!-- כפתור סגירה -->
+    <button id="closeMenu" class="absolute top-4 right-4 text-gray-800 text-3xl z-[9999]">
+      ✕
+    </button>
+
+    <a href="#about" class="text-gray-800 font-medium hover:text-green-700">אודות</a>
+    <a href="#services" class="text-gray-800 font-medium hover:text-green-700">שירותים</a>
+    <a href="#testimonials" class="text-gray-800 font-medium hover:text-green-700">המלצות</a>
+    <a href="#faq" class="text-gray-800 font-medium hover:text-green-700">שאלות נפוצות</a>
+    <a href="#contact"
+       class="px-6 py-3 text-white font-semibold rounded-full shadow-lg text-center"
+       style="background: linear-gradient(135deg, #598447, #6b9555);">
+       צור קשר
+    </a>
+  </div>
+</div>
+
 
     <!-- כפתור תפריט במובייל (מימין) -->
     <button id="menuBtn" class="md:hidden text-gray-800 focus:outline-none">
@@ -795,35 +829,40 @@
         }
     });
 
-  // תפריט מובייל מתוקן
+ // תפריט מובייל עם אנימציה
 const menuBtn = document.getElementById('menuBtn');
 const mobileMenu = document.getElementById('mobileMenu');
+const menuBox = mobileMenu.querySelector('div');
 const closeMenu = document.getElementById('closeMenu');
 const mobileLinks = mobileMenu.querySelectorAll('a');
 
 // פתיחה
 menuBtn.addEventListener('click', () => {
   mobileMenu.classList.remove('hidden');
+  setTimeout(() => {
+    menuBox.classList.remove('translate-x-full');
+  }, 10);
 });
+
+// סגירה (פונקציה משותפת)
+function closeMobileMenu() {
+  menuBox.classList.add('translate-x-full');
+  setTimeout(() => {
+    mobileMenu.classList.add('hidden');
+  }, 300);
+}
 
 // סגירה בלחיצה על X
-closeMenu.addEventListener('click', () => {
-  mobileMenu.classList.add('hidden');
-});
+closeMenu.addEventListener('click', closeMobileMenu);
 
-// סגירה בלחיצה על קישור בתפריט
-mobileLinks.forEach(link => {
-  link.addEventListener('click', () => {
-    mobileMenu.classList.add('hidden');
-  });
-});
+// סגירה בלחיצה על קישור
+mobileLinks.forEach(link => link.addEventListener('click', closeMobileMenu));
 
-// סגירה בלחיצה על הרקע (האפור)
+// סגירה בלחיצה על הרקע
 mobileMenu.addEventListener('click', (e) => {
-  if (e.target === mobileMenu) {
-    mobileMenu.classList.add('hidden');
-  }
+  if (e.target === mobileMenu) closeMobileMenu();
 });
+
 
 </script>
 
